@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Tramonto | Cabana Modular · Serra Negra</title>
+<meta name="description" content="Refúgio modular de luxo em Serra Negra com banheira de imersão, lareira suspensa e pôr do sol inesquecível." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+<style>
+:root {
+--terra: #C2714F;
+--dusk: #1C1410;
+--ash: #2E2520;
+--fog: #F0EBE3;
+--mist: #D8CFC4;
+--white: #FDFAF6;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+font-family: 'Jost', sans-serif;
+background: var(--white);
+color: var(--dusk);
+font-weight: 300;
+}
+/* ── NAV ── */
+nav {
+position: fixed; top: 0; left: 0; right: 0;
+z-index: 100;
+display: flex; align-items: center; justify-content: space-between;
+padding: 22px 48px;
+background: transparent;
+transition: background .4s;
+}
+nav.scrolled { background: rgba(28,20,16,.88); backdrop-filter: blur(10px); }
+.nav-logo {
+font-family: 'Cormorant Garamond', serif;
+font-size: 1.55rem;
+font-weight: 300;
+letter-spacing: .18em;
+color: var(--white);
+text-transform: uppercase;
+text-decoration: none;
+}
+.nav-links { display: flex; gap: 32px; list-style: none; }
+.nav-links a {
+color: var(--fog);
+text-decoration: none;
+font-size: .72rem;
+letter-spacing: .2em;
+text-transform: uppercase;
+font-weight: 400;
+transition: color .2s;
+}
+.nav-links a:hover { color: var(--terra); }
+.nav-cta {
+background: var(--terra);
+color: var(--white) !important;
+padding: 9px 22px !important;
+letter-spacing: .18em !important;
+}
+/* ── HERO ── */
+.hero {
+position: relative; height: 100vh;
+display: flex; align-items: flex-end;
+overflow: hidden;
+}
+.hero-bg {
+position: absolute; inset: 0;
+background:
+linear-gradient(to bottom, rgba(28,20,16,.15) 0%, rgba(28,20,16,.6) 100%),
+url('hero.jpg') center/cover no-repeat;
+transform: scale(1.04);
+transition: transform 8s ease;
+}
+.hero:hover .hero-bg { transform: scale(1.0); }
+.hero-content {
+position: relative; z-index: 2;
+padding: 0 64px 72px;
+max-width: 760px;
+}
+.hero-eyebrow {
+font-size: .68rem;
+letter-spacing: .32em;
+text-transform: uppercase;
+color: var(--terra);
+margin-bottom: 18px;
+}
+.hero h1 {
+font-family: 'Cormorant Garamond', serif;
+font-size: clamp(3.2rem, 7vw, 6rem);
+font-weight: 300;
+line-height: 1.05;
+color: var(--white);
+margin-bottom: 28px;
+}
+.hero h1 em { font-style: italic; color: var(--mist); }
+.hero-sub {
+color: var(--fog);
+font-size: .9rem;
+letter-spacing: .06em;
+max-width: 480px;
+line-height: 1.75;
+margin-bottom: 40px;
+}
+.btn {
+display: inline-block;
+padding: 14px 36px;
+font-size: .72rem;
+letter-spacing: .22em;
+text-transform: uppercase;
+text-decoration: none;
+font-weight: 400;
+transition: background .25s, color .25s;
+}
+.btn-primary {
+background: var(--terra);
+color: var(--white);
+}
+.btn-primary:hover { background: #a85c3c; }
+.btn-ghost {
+border: 1px solid rgba(253,250,246,.45);
+color: var(--white);
+margin-left: 16px;
+}
+.btn-ghost:hover { background: rgba(253,250,246,.1); }
+.hero-scroll {
+position: absolute; bottom: 28px; right: 64px;
+writing-mode: vertical-rl;
+font-size: .6rem;
+letter-spacing: .3em;
+text-transform: uppercase;
+color: rgba(253,250,246,.55);
+}
+/* ── INTRO STRIP ── */
+.strip {
+background: var(--dusk);
+display: flex;
+align-items: center;
+justify-content: center;
+gap: 56px;
+padding: 28px 48px;
+flex-wrap: wrap;
+}
+.strip-item {
+display: flex; align-items: center; gap: 12px;
+color: var(--mist);
+font-size: .72rem;
+letter-spacing: .18em;
+text-transform: uppercase;
+}
+.strip-item svg { width: 18px; height: 18px; stroke: var(--terra); fill: none; stroke-width: 1.5; }
+/* ── SECTION SHARED ── */
+section { padding: 100px 64px; }
+.section-eyebrow {
+font-size: .65rem;
+letter-spacing: .32em;
+text-transform: uppercase;
+color: var(--terra);
+margin-bottom: 14px;
+}
+.section-title {
+font-family: 'Cormorant Garamond', serif;
+font-size: clamp(2.2rem, 4vw, 3.5rem);
+font-weight: 300;
+line-height: 1.15;
+color: var(--dusk);
+max-width: 600px;
+}
+.section-title em { font-style: italic; }
+.section-body {
+font-size: .9rem;
+line-height: 1.85;
+color: #5a4e47;
+max-width: 540px;
+margin-top: 24px;
+}
+/* ── SOBRE ── */
+.about {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 80px;
+align-items: center;
+background: var(--white);
+}
+.about-media {
+position: relative; height: 580px;
+}
+.about-img-main {
+position: absolute; inset: 0;
+width: 100%; height: 100%;
+object-fit: cover;
+}
+.about-img-accent {
+position: absolute;
+bottom: -36px; right: -36px;
+width: 52%; height: 48%;
+object-fit: cover;
+border: 6px solid var(--white);
+}
+.about-highlights {
+display: flex; flex-direction: column; gap: 20px;
+margin-top: 40px;
+}
+.highlight {
+display: flex; align-items: flex-start; gap: 16px;
+padding: 20px;
+background: var(--fog);
+}
+.highlight-icon {
+font-size: 1.4rem; line-height: 1; flex-shrink: 0;
+}
+.highlight-label {
+font-size: .68rem;
+letter-spacing: .2em;
+text-transform: uppercase;
+color: var(--terra);
+margin-bottom: 4px;
+}
+.highlight-text {
+font-size: .85rem;
+line-height: 1.6;
+color: var(--ash);
+}
+/* ── GALERIA ── */
+.gallery-section { background: var(--fog); padding: 100px 64px; }
+.gallery-header {
+display: flex; justify-content: space-between; align-items: flex-end;
+margin-bottom: 48px;
+}
+.gallery-grid {
+display: grid;
+grid-template-columns: 2fr 1fr 1fr;
+grid-template-rows: 300px 300px;
+gap: 12px;
+}
+.gallery-grid img {
+width: 100%; height: 100%; object-fit: cover;
+display: block;
+}
+.gallery-grid .g-tall { grid-row: span 2; }
+/* ── COMODIDADES ── */
+.amenities { background: var(--dusk); }
+.amenities .section-title { color: var(--fog); }
+.amenities .section-body { color: var(--mist); }
+.amenities .section-eyebrow { color: var(--terra); }
+.amenities-grid {
+display: grid;
+grid-template-columns: repeat(4, 1fr);
+gap: 2px;
+margin-top: 56px;
+}
+.amenity-card {
+background: var(--ash);
+padding: 36px 28px;
+transition: background .2s;
+}
+.amenity-card:hover { background: #3a2e28; }
+.amenity-card .icon { font-size: 1.8rem; margin-bottom: 16px; }
+.amenity-card h4 {
+font-family: 'Cormorant Garamond', serif;
+font-size: 1.15rem;
+font-weight: 300;
+color: var(--fog);
+margin-bottom: 8px;
+}
+.amenity-card p {
+font-size: .78rem;
+color: var(--mist);
+line-height: 1.6;
+}
+/* ── AGENDA / BOOKING ── */
+.booking { background: var(--white); }
+.booking-inner {
+display: grid;
+grid-template-columns: 1fr 1.6fr;
+gap: 80px;
+align-items: start;
+}
+.booking-info { position: sticky; top: 120px; }
+.price-tag {
+display: flex; align-items: baseline; gap: 8px;
+margin: 28px 0;
+}
+.price-amount {
+font-family: 'Cormorant Garamond', serif;
+font-size: 3rem;
+font-weight: 300;
+color: var(--dusk);
+}
+.price-note {
+font-size: .72rem;
+letter-spacing: .15em;
+text-transform: uppercase;
+color: #8a7a73;
+}
+.stars {
+display: flex; align-items: center; gap: 6px;
+font-size: .78rem;
+color: var(--terra);
+margin-bottom: 24px;
+}
+.booking-widget-wrap {
+background: var(--fog);
+padding: 40px;
+}
+.booking-widget-title {
+font-family: 'Cormorant Garamond', serif;
+font-size: 1.6rem;
+font-weight: 300;
+margin-bottom: 8px;
+color: var(--dusk);
+}
+.booking-widget-sub {
+font-size: .8rem;
+color: #6a5c55;
+margin-bottom: 28px;
+line-height: 1.6;
+}
+/* Airbnb calendar embed wrapper */
+.airbnb-cal-wrap {
+width: 100%;
+overflow: hidden;
+}
+.airbnb-cal-wrap iframe {
+width: 100%;
+border: none;
+min-height: 540px;
+}
+.booking-cta {
+margin-top: 28px;
+display: flex; flex-direction: column; gap: 12px;
+}
+.btn-full {
+display: block;
+text-align: center;
+padding: 16px;
+font-size: .75rem;
+letter-spacing: .2em;
+text-transform: uppercase;
+font-weight: 400;
+text-decoration: none;
+transition: background .25s;
+}
+.btn-full-primary {
+background: var(--terra);
+color: var(--white);
+}
+.btn-full-primary:hover { background: #a85c3c; }
+.btn-full-ghost {
+border: 1px solid var(--mist);
+color: var(--dusk);
+}
+.btn-full-ghost:hover { background: var(--fog); }
+.policy-list {
+margin-top: 24px;
+list-style: none;
+display: flex; flex-direction: column; gap: 10px;
+}
+.policy-list li {
+font-size: .78rem;
+color: #7a6b64;
+display: flex; align-items: center; gap: 10px;
+}
+.policy-list li::before {
+content: '';
+width: 4px; height: 4px;
+background: var(--terra);
+flex-shrink: 0;
+}
+/* ── COMO CHEGAR / LOCALIZAÇÃO ── */
+.location { background: var(--fog); }
+.location-inner {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 80px;
+align-items: center;
+}
+.map-placeholder {
+height: 420px;
+background: #ddd;
+position: relative;
+overflow: hidden;
+}
+.map-placeholder iframe {
+width: 100%; height: 100%; border: none;
+}
+/* ── AVALIAÇÕES ── */
+.reviews { background: var(--dusk); padding: 100px 64px; }
+.reviews .section-title { color: var(--fog); }
+.reviews .section-eyebrow { color: var(--terra); }
+.reviews-grid {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 2px;
+margin-top: 56px;
+}
+.review-card {
+background: var(--ash);
+padding: 40px 32px;
+}
+.review-stars { color: var(--terra); font-size: 1rem; margin-bottom: 20px; }
+.review-text {
+font-family: 'Cormorant Garamond', serif;
+font-size: 1.1rem;
+font-weight: 300;
+font-style: italic;
+line-height: 1.7;
+color: var(--fog);
+margin-bottom: 24px;
+}
+.review-author {
+font-size: .68rem;
+letter-spacing: .18em;
+text-transform: uppercase;
+color: var(--mist);
+}
+/* ── CONTATO ── */
+.contact { background: var(--terra); padding: 100px 64px; }
+.contact-inner {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 80px;
+align-items: center;
+}
+.contact .section-title { color: var(--white); }
+.contact .section-eyebrow { color: rgba(255,255,255,.7); }
+.contact .section-body { color: rgba(255,255,255,.85); }
+.contact-details {
+display: flex; flex-direction: column; gap: 24px;
+margin-top: 36px;
+}
+.contact-item {
+display: flex; align-items: center; gap: 16px;
+}
+.contact-item a {
+color: var(--white);
+text-decoration: none;
+font-size: .9rem;
+letter-spacing: .05em;
+}
+.contact-icon {
+width: 40px; height: 40px;
+background: rgba(255,255,255,.18);
+display: flex; align-items: center; justify-content: center;
+font-size: 1rem;
+flex-shrink: 0;
+}
+.contact-cta {
+background: var(--white);
+padding: 40px;
+}
+.contact-cta h3 {
+font-family: 'Cormorant Garamond', serif;
+font-size: 1.8rem;
+font-weight: 300;
+color: var(--dusk);
+margin-bottom: 8px;
+}
+.contact-cta p {
+font-size: .82rem;
+color: #7a6b64;
+margin-bottom: 24px;
+line-height: 1.6;
+}
+.contact-cta .btn-full-primary { background: var(--terra); }
+/* ── FOOTER ── */
+footer {
+background: var(--dusk);
+padding: 48px 64px;
+display: flex;
+align-items: center;
+justify-content: space-between;
+flex-wrap: wrap;
+gap: 20px;
+}
+.footer-logo {
+font-family: 'Cormorant Garamond', serif;
+font-size: 1.3rem;
+font-weight: 300;
+letter-spacing: .22em;
+color: var(--fog);
+text-transform: uppercase;
+}
+.footer-copy {
+font-size: .68rem;
+color: #6a5c55;
+letter-spacing: .1em;
+}
+.footer-social { display: flex; gap: 20px; }
+.footer-social a {
+color: var(--mist);
+font-size: .68rem;
+letter-spacing: .18em;
+text-transform: uppercase;
+text-decoration: none;
+}
+.footer-social a:hover { color: var(--terra); }
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+nav { padding: 18px 24px; }
+.nav-links { display: none; }
+section { padding: 72px 24px; }
+.about { grid-template-columns: 1fr; gap: 48px; }
+.about-img-accent { display: none; }
+.gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+.gallery-grid .g-tall { grid-row: auto; }
+.amenities-grid { grid-template-columns: 1fr 1fr; }
+.booking-inner { grid-template-columns: 1fr; }
+.booking-info { position: static; }
+.location-inner { grid-template-columns: 1fr; }
+.reviews-grid { grid-template-columns: 1fr; }
+.contact-inner { grid-template-columns: 1fr; }
+footer { flex-direction: column; align-items: flex-start; padding: 40px 24px; }
+.hero-content { padding: 0 24px 60px; }
+.gallery-section { padding: 72px 24px; }
+.reviews { padding: 72px 24px; }
+.contact { padding: 72px 24px; }
+}
+</style>
+</head>
+<body>
+<!-- NAV -->
+<nav id="nav">
+<a href="#" class="nav-logo">Tramonto</a>
+<ul class="nav-links">
+<li><a href="#sobre">Sobre</a></li>
+<li><a href="#galeria">Galeria</a></li>
+<li><a href="#comodidades">Comodidades</a></li>
+<li><a href="#reservar">Agenda</a></li>
+<li><a href="#contato">Contato</a></li>
+<li><a href="#reservar" class="nav-cta">Reservar</a></li>
+</ul>
+</nav>
+<!-- HERO -->
+<section class="hero" id="home">
+<div class="hero-bg"></div>
+<div class="hero-content">
+<p class="hero-eyebrow">Serra Negra · São Paulo · Brasil</p>
+<h1>O pôr do sol<br/><em>mais bonito</em><br/>da serra</h1>
+<p class="hero-sub">Cabana modular de luxo com banheira de imersão, lareira suspensa e internet Starlink. Uma experiência única de design e natureza.</p>
+<a href="#reservar" class="btn btn-primary">Ver disponibilidade</a>
+<a href="#sobre" class="btn btn-ghost">Conhecer</a>
+</div>
+<span class="hero-scroll">Scroll</span>
+</section>
+<!-- STRIP -->
+<div class="strip">
+<div class="strip-item">
+<svg viewBox="0 0 24 24"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>
+1,5 km do Alto da Serra
+</div>
+<div class="strip-item">
+<svg viewBox="0 0 24 24"><path d="M12 2a5 5 0 1 0 0 10A5 5 0 0 0 12 2z"/><path d="M12 14c-5 0-9 2.24-9 5v1h18v-1c0-2.76-4-5-9-5z"/></svg>
+Até 2 hóspedes
+</div>
+<div class="strip-item">
+<svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+Internet Starlink
+</div>
+<div class="strip-item">
+<svg viewBox="0 0 24 24"><path d="M12 22c0 0-8-5.5-8-12a8 8 0 0 1 16 0c0 6.5-8 12-8 12z"/></svg>
+★ 5,0 · Superhost
+</div>
+<div class="strip-item">
+<svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg>
+Self check-in
+</div>
+</div>
+<!-- SOBRE -->
+<section class="about" id="sobre">
+<div class="about-media">
+<img class="about-img-main"
+src="sobre-1.jpeg"
+alt="Interior da Tramonto" loading="lazy" />
+<img class="about-img-accent"
+src="sobre-2.jpeg"
+alt="Banheira de imersão" loading="lazy" />
+</div>
+<div>
+<p class="section-eyebrow">Nossa história</p>
+<h2 class="section-title">Um quadro<br/><em>para o entardecer</em></h2>
+<p class="section-body">
+Quando a natureza entrega um horizonte assim, o papel do espaço é simples: sair do caminho. Tramonto — italiano para pôr do sol — nasceu dessa ideia. Uma arquitetura modular que não compete com a serra, mas a enquadra.
+</p>
+<p class="section-body" style="margin-top: 16px;">
+A 1,5 km do Alto da Serra em Serra Negra, o refúgio combina design contemporâneo com conforto premium: enxoval Trousseau, eletrodomésticos Electrolux e uma lareira suspensa que transforma cada noite.
+</p>
+<div class="about-highlights">
+<div class="highlight">
+<span class="highlight-icon">🛁</span>
+<div>
+<div class="highlight-label">Banheira de imersão</div>
+<p class="highlight-text">Design escultural com vista panorâmica direta para o pôr do sol.</p>
+</div>
+</div>
+<div class="highlight">
+<span class="highlight-icon">🔥</span>
+<div>
+<div class="highlight-label">Lareira suspensa</div>
+<p class="highlight-text">Moderna e aconchegante — o ponto focal de cada noite fria na serra.</p>
+</div>
+</div>
+<div class="highlight">
+<span class="highlight-icon">⚡</span>
+<div>
+<div class="highlight-label">Internet Starlink</div>
+<p class="highlight-text">Ultra velocidade no meio da natureza. Trabalhe ou apenas relaxe.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- GALERIA -->
+<section class="gallery-section" id="galeria">
+<div class="gallery-header">
+<div>
+<p class="section-eyebrow">Galeria</p>
+<h2 class="section-title">Ver para <em>crer</em></h2>
+</div>
+<a href="https://www.airbnb.com.br/rooms/1697797398090513775" target="_blank" class="btn btn-primary">Ver no Airbnb</a>
+</div>
+<div class="gallery-grid">
+<img class="g-tall"
+src="galeria-1.jpg"
+alt="Vista externa" loading="lazy" />
+<img
+src="galeria-2.jpg"
+alt="Área interna" loading="lazy" />
+<img
+src="galeria-3.jpg"
+alt="Quarto" loading="lazy" />
+<img
+src="galeria-4.jpeg"
+alt="Banheira" loading="lazy" />
+<img
+src="galeria-5.jpg"
+alt="Sala" loading="lazy" />
+</div>
+</section>
+<!-- COMODIDADES -->
+<section class="amenities" id="comodidades">
+<div>
+<p class="section-eyebrow">Comodidades</p>
+<h2 class="section-title">Tudo pensado<br/><em>para o seu conforto</em></h2>
+<p class="section-body">Do primeiro café da manhã ao último fogo na lareira, cada detalhe foi escolhido para tornar sua estadia inesquecível.</p>
+</div>
+<div class="amenities-grid">
+<div class="amenity-card">
+<div class="icon">🛁</div>
+<h4>Banheira de imersão</h4>
+<p>Design escultural com vista panorâmica para o horizonte.</p>
+</div>
+<div class="amenity-card">
+<div class="icon">🔥</div>
+<h4>Lareira suspensa</h4>
+<p>Ambiente aconchegante e sofisticado para as noites de serra.</p>
+</div>
+<div class="amenity-card">
+<div class="icon">⚡</div>
+<h4>Internet Starlink</h4>
+<p>Ultra velocidade no meio da natureza.</p>
+</div>
+<div class="amenity-card">
+<div class="icon">🍳</div>
+<h4>Cozinha equipada</h4>
+<p>Eletrodomésticos Electrolux e utensílios completos.</p>
+</div>
+<div class="amenity-card">
+<div class="icon">❄️</div>
+<h4>Ar-condicionado</h4>
+<p>Conforto térmico em todas as estações.</p>
+</div>
+<div class="amenity-card">
+<div class="icon">🌿</div>
+<h4>Vista panorâmica</h4>
+<p>Janelas amplas que emolduram o pôr do sol.</p>
+</div>
+<div class="amenity-card">
+<div class="icon">🅿️</div>
+<h4>Estacionamento privativo</h4>
+<p>Segurança e comodidade para o seu veículo.</p>
+</div>
+<div class="amenity-card">
+<div class="icon">🛏️</div>
+<h4>Enxoval Trousseau</h4>
+<p>Roupa de cama premium para noites de sono perfeitas.</p>
+</div>
+</div>
+</section>
+<!-- AGENDA / BOOKING -->
+<section class="booking" id="reservar">
+<div class="booking-inner">
+<div class="booking-info">
+<p class="section-eyebrow">Agenda</p>
+<h2 class="section-title">Reserve sua<br/><em>experiência</em></h2>
+<div class="price-tag">
+<span class="price-amount">R$ 1.280</span>
+<span class="price-note">/ noite</span>
+</div>
+<div class="stars">★★★★★ 5,0 · Superhost</div>
+<ul class="policy-list">
+<li>Mínimo de 2 noites</li>
+<li>Check-in a partir das 15h</li>
+<li>Check-out até às 11h</li>
+<li>Cancelamento flexível</li>
+</ul>
+</div>
+<div class="booking-widget-wrap">
+  <h3 class="booking-widget-title">Calendário de disponibilidade</h3>
+  <p class="booking-widget-sub">As datas atualizam automaticamente conforme as reservas no Airbnb.</p>
+  <div class="airbnb-cal-wrap">
+    <!-- AQUI VOCÊ COLOCA O IFRAME GERADO PELO RENTALBEAM -->
+  </div>
+  <div class="booking-cta">
+    <a href="https://www.airbnb.com.br/rooms/1697797398090513775" target="_blank" class="btn-full btn-full-primary">
+      Reservar no Airbnb
+    </a>
+    <a href="https://wa.me/5519999881020?text=Ol%C3%A1!%20Estou%20na%20Cabana%20Tramonto%20e%20preciso%20de%20ajuda" target="_blank" class="btn-full btn-full-ghost">
+      Consultar pelo WhatsApp
+    </a>
+  </div>
+</div>
+</section>
+<!-- LOCALIZAÇÃO -->
+<section class="location" id="localizacao">
+<div class="location-inner">
+<div>
+<p class="section-eyebrow">Como chegar</p>
+<h2 class="section-title">Serra Negra,<br/><em>a 1,5 km do Alto</em></h2>
+<p class="section-body">
+A Tramonto fica em Serra Negra, a poucos minutos do Alto da Serra. Acesso fácil por estrada asfaltada, estacionamento privativo e total privacidade em meio à natureza.
+</p>
+<p class="section-body" style="margin-top: 16px;">
+Distâncias: 1,5 km do centro, 3 km da Fonte dos Amores e 15 km de Amparo. Perfeita para quem busca tranquilidade sem se isolar.
+</p>
+</div>
+<div class="map-placeholder">
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3313.407470233264!2d-46.694285225083355!3d-22.63030512804773!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94c92383d3007759%3A0x48b392abd310eba8!2sTramonto!5e1!3m2!1spt-BR!2sbr!4v1782267456819!5m2!1spt-BR!2sbr" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+</div>
+</div>
+</section>
+<!-- AVALIAÇÕES -->
+<section class="reviews" id="avaliacoes">
+<div>
+<p class="section-eyebrow">Avaliações</p>
+<h2 class="section-title">O que dizem<br/><em>os hóspedes</em></h2>
+</div>
+<div class="reviews-grid">
+<div class="review-card">
+<div class="review-stars">★★★★★</div>
+<p class="review-text">“A vista do pôr do sol é de tirar o fôlego. A cabana é ainda mais bonita pessoalmente.”</p>
+<div class="review-author">Mariana & Pedro</div>
+</div>
+<div class="review-card">
+<div class="review-stars">★★★★★</div>
+<p class="review-text">“Banheira com vista, lareira aconchegante e uma paz incomparável. Voltaremos em breve.”</p>
+<div class="review-author">Juliana F.</div>
+</div>
+<div class="review-card">
+<div class="review-stars">★★★★★</div>
+<p class="review-text">“Cada detalhe foi pensado com carinho. O enxoval e os amenities são de alto padrão.”</p>
+<div class="review-author">Ricardo M.</div>
+</div>
+</div>
+</section>
+<!-- CONTATO -->
+<section class="contact" id="contato">
+<div class="contact-inner">
+<div>
+<p class="section-eyebrow">Contato</p>
+<h2 class="section-title">Pronto para<br/><em>viver o pôr do sol?</em></h2>
+<p class="section-body">Entre em contato direto pelo WhatsApp ou e-mail. Teremos prazer em responder dúvidas e ajudar no planejamento da sua estadia.</p>
+<div class="contact-details">
+<div class="contact-item">
+<div class="contact-icon">📱</div>
+<a href="https://wa.me/5519999881020" target="_blank">+55 19 99988-1020</a>
+</div>
+<div class="contact-item">
+<div class="contact-icon">✉️</div>
+<a href="mailto:contato@tramonto.com.br">contato@tramonto.com.br</a>
+</div>
+<div class="contact-item">
+<div class="contact-icon">📍</div>
+<a href="#localizacao">Serra Negra · SP</a>
+</div>
+</div>
+</div>
+<div class="contact-cta">
+<h3>Reserve agora</h3>
+<p>Garanta as melhores datas pelo Airbnb e viva uma experiência inesquecível na serra.</p>
+<a href="https://www.airbnb.com.br/rooms/1697797398090513775" target="_blank" class="btn-full btn-full-primary">Ver no Airbnb</a>
+</div>
+</div>
+</section>
+<!-- FOOTER -->
+<footer>
+<div class="footer-logo">Tramonto</div>
+<div class="footer-copy">© 2025 Tramonto Cabana Modular. Todos os direitos reservados.</div>
+<div class="footer-social">
+<a href="https://instagram.com" target="_blank">Instagram</a>
+<a href="https://airbnb.com.br" target="_blank">Airbnb</a>
+</div>
+</footer>
+<script>
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+if (window.scrollY > 50) nav.classList.add('scrolled');
+else nav.classList.remove('scrolled');
+});
+</script>
+</body>
+</html>
